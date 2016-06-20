@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="start," />
+  <meta name="keywords" content="node," />
 
 
 
@@ -80,93 +80,40 @@
 
 
 
-<meta name="description" content="标题一、二、…、六级标题：
-
-注：#和标题之间建议保留一个字符的空格
-列表无序列表
-有序列表
-链接和图片链接[需要显示的文本](链接)
-
-图片![图片说明](图片链接)
-
-注：链接和图片语法只差了一个！
-引用引用文本前面加上&amp;gt;即可
-
-古诗的引用
-
-粗体和斜体用一个*号包含是斜体, 用两个*号包含是加粗
-
-表格
-注：
-
-要写3个—
-注意左右对齐写法
-
-代码">
+<meta name="description" content="写在开始去年按照小老大的博客教程 step by step 的在 linux 上装过 node，然而今年要在新申请的虚拟机上安装时还是手忙脚乱，所以还是认真记录下吧。
+由于是 clean 的虚拟机所以简单的配置下方便以后的工作：
+创建新的账户：
+useradd jingjing
+为新创建的账户设置密码：
+password jingjing
+切换到新创建的账户下面：
+su - jingjing
+创建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="md-learning">
-<meta property="og:url" content="http://127.0.0.1:9999/2016/06/11/md-learning/index.html">
+<meta property="og:title" content="node-install-onLinux">
+<meta property="og:url" content="http://127.0.0.1:9999/2016/06/20/node-install/index.html">
 <meta property="og:site_name" content="jingjing's blog">
-<meta property="og:description" content="标题一、二、…、六级标题：
-
-注：#和标题之间建议保留一个字符的空格
-列表无序列表
-有序列表
-链接和图片链接[需要显示的文本](链接)
-
-图片![图片说明](图片链接)
-
-注：链接和图片语法只差了一个！
-引用引用文本前面加上&amp;gt;即可
-
-古诗的引用
-
-粗体和斜体用一个*号包含是斜体, 用两个*号包含是加粗
-
-表格
-注：
-
-要写3个—
-注意左右对齐写法
-
-代码">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-18.15.43.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-18.17.14.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-18.17.43.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-19.58.27.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-19.59.17.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-19.59.53.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-20.00.55.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-20.02.41.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-20.04.08.png">
-<meta property="og:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-20.04.49.png">
-<meta property="og:updated_time" content="2016-06-19T10:02:58.000Z">
+<meta property="og:description" content="写在开始去年按照小老大的博客教程 step by step 的在 linux 上装过 node，然而今年要在新申请的虚拟机上安装时还是手忙脚乱，所以还是认真记录下吧。
+由于是 clean 的虚拟机所以简单的配置下方便以后的工作：
+创建新的账户：
+useradd jingjing
+为新创建的账户设置密码：
+password jingjing
+切换到新创建的账户下面：
+su - jingjing
+创建">
+<meta property="og:updated_time" content="2016-06-20T07:38:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="md-learning">
-<meta name="twitter:description" content="标题一、二、…、六级标题：
-
-注：#和标题之间建议保留一个字符的空格
-列表无序列表
-有序列表
-链接和图片链接[需要显示的文本](链接)
-
-图片![图片说明](图片链接)
-
-注：链接和图片语法只差了一个！
-引用引用文本前面加上&amp;gt;即可
-
-古诗的引用
-
-粗体和斜体用一个*号包含是斜体, 用两个*号包含是加粗
-
-表格
-注：
-
-要写3个—
-注意左右对齐写法
-
-代码">
-<meta name="twitter:image" content="http://127.0.0.1:9999/2016/06/11/md-learning/2016-06-11-18.15.43.png">
+<meta name="twitter:title" content="node-install-onLinux">
+<meta name="twitter:description" content="写在开始去年按照小老大的博客教程 step by step 的在 linux 上装过 node，然而今年要在新申请的虚拟机上安装时还是手忙脚乱，所以还是认真记录下吧。
+由于是 clean 的虚拟机所以简单的配置下方便以后的工作：
+创建新的账户：
+useradd jingjing
+为新创建的账户设置密码：
+password jingjing
+切换到新创建的账户下面：
+su - jingjing
+创建">
 
 
 
@@ -184,7 +131,7 @@
   };
 </script>
 
-  <title> md-learning | jingjing's blog </title>
+  <title> node-install-onLinux | jingjing's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,7 +261,7 @@
             
             
               
-                md-learning
+                node-install-onLinux
               
             
           </h1>
@@ -326,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-11T22:04:30+08:00" content="2016-06-11">
-              2016-06-11
+            <time itemprop="dateCreated" datetime="2016-06-20T15:12:30+08:00" content="2016-06-20">
+              2016-06-20
             </time>
           </span>
 
@@ -353,29 +300,19 @@
       
 
       
-        <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>一、二、…、六级标题：</p>
-<img src="/2016/06/11/md-learning/2016-06-11-18.15.43.png" alt="标题" title="标题">
-<p>注：#和标题之间建议保留一个字符的空格</p>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><img src="/2016/06/11/md-learning/2016-06-11-18.17.14.png" alt="无序列表" title="无序列表">
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><img src="/2016/06/11/md-learning/2016-06-11-18.17.43.png" alt="2016-06-11-18.17.43.png" title="">
-<h2 id="链接和图片"><a href="#链接和图片" class="headerlink" title="链接和图片"></a>链接和图片</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>[需要显示的文本](链接)</p>
-<img src="/2016/06/11/md-learning/2016-06-11-19.58.27.png" alt="2016-06-11-19.58.27.png" title="">
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>![图片说明](图片链接)</p>
-<img src="/2016/06/11/md-learning/2016-06-11-19.59.17.png" alt="2016-06-11-19.59.17.png" title="">
-<p>注：链接和图片语法只差了一个！</p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>引用文本前面加上&gt;即可</p>
-<img src="/2016/06/11/md-learning/2016-06-11-19.59.53.png" alt="2016-06-11-19.59.53.png" title="">
-<p>古诗的引用</p>
-<img src="/2016/06/11/md-learning/2016-06-11-20.00.55.png" alt="2016-06-11-20.00.55.png" title="">
-<h2 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h2><p>用一个*号包含是斜体, 用两个*号包含是加粗</p>
-<img src="/2016/06/11/md-learning/2016-06-11-20.02.41.png" alt="2016-06-11-20.02.41.png" title="">
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><img src="/2016/06/11/md-learning/2016-06-11-20.04.08.png" alt="2016-06-11-20.04.08.png" title="">
-<p>注：</p>
-<ul>
-<li>要写3个—</li>
-<li>注意左右对齐写法</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><img src="/2016/06/11/md-learning/2016-06-11-20.04.49.png" alt="2016-06-11-20.04.49.png" title="">
+        <h2 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h2><p>去年按照小老大的博客教程 step by step 的在 linux 上装过 node，然而今年要在新申请的虚拟机上安装时还是手忙脚乱，所以还是认真记录下吧。</p>
+<p>由于是 clean 的虚拟机所以简单的配置下方便以后的工作：</p>
+<p>创建新的账户：</p>
+<pre><code>useradd jingjing
+</code></pre><p>为新创建的账户设置密码：</p>
+<pre><code>password jingjing
+</code></pre><p>切换到新创建的账户下面：</p>
+<pre><code>su - jingjing
+</code></pre><p>创建软件存放目录和软件安装目录：</p>
+<pre><code>mkdir softwares &amp;&amp; mkdir local
+</code></pre><p>简单配置过后就可以安装了，在 linux 安装 node 有三种方式。</p>
+<h2 id="二进制文件安装"><a href="#二进制文件安装" class="headerlink" title="二进制文件安装"></a>二进制文件安装</h2><p>step 1：在浏览器打开 node [download] 的页面</p>
+
       
     </div>
     
@@ -395,7 +332,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/start/" rel="tag">#start</a>
+            <a href="/tags/node/" rel="tag">#node</a>
           
         </div>
       
@@ -404,13 +341,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/06/19/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/12/web-storage/" rel="prev" title="web-storage">
-                web-storage <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,7 +456,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无序列表"><span class="nav-number">2.1.</span> <span class="nav-text">无序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序列表"><span class="nav-number">2.2.</span> <span class="nav-text">有序列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接和图片"><span class="nav-number">3.</span> <span class="nav-text">链接和图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">3.1.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片"><span class="nav-number">3.2.</span> <span class="nav-text">图片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粗体和斜体"><span class="nav-number">5.</span> <span class="nav-text">粗体和斜体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格"><span class="nav-number">6.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">7.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在开始"><span class="nav-number">1.</span> <span class="nav-text">写在开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制文件安装"><span class="nav-number">2.</span> <span class="nav-text">二进制文件安装</span></a></li></ol></div>
             
           </div>
         </section>
