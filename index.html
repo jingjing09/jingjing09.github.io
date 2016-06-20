@@ -340,8 +340,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/12/localStorage/" itemprop="url">
-                  localStorage
+                <a class="post-title-link" href="/2016/06/12/web-storage/" itemprop="url">
+                  web-storage
                 </a>
               
             
@@ -401,17 +401,37 @@
 </ul>
 <h2 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h2><p>到目前为止，IE8 以上、Firefox3.6 以上、Chrome6 以上、Safari5 以上、Opera10.50 以上版本浏览器均支持 web storage 。</p>
 <h2 id="可存放数据大小"><a href="#可存放数据大小" class="headerlink" title="可存放数据大小"></a>可存放数据大小</h2><p>一般浏览器中，每个域名下的 localStorage、sessionStorage 均可以存储5MB大小的数据。</p>
-<h2 id="判断浏览器是否支持"><a href="#判断浏览器是否支持" class="headerlink" title="判断浏览器是否支持"></a>判断浏览器是否支持</h2><p>在使用 Web Storage 之前有必要检测当前浏览器是否支持。</p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h2 id="storage-事件"><a href="#storage-事件" class="headerlink" title="storage 事件"></a>storage 事件</h2><p>可以通过对 window 对象的 storage 事件进行监听来定义当在其它页面中修改 web storage 中的值时所要进行的处理。</p>
+<h2 id="判断浏览器是否支持"><a href="#判断浏览器是否支持" class="headerlink" title="判断浏览器是否支持"></a>判断浏览器是否支持</h2><p>在使用 Web Storage 之前有必要检测当前浏览器是否支持。 接下来已 localStorage 为例。</p>
+<p>若当前浏览器支持 localStorage，则 window 对象上存在 localStorage 属性，然而仅仅判读 localStorage 属性的存在性是不够的，有些浏览器虽然能够找到 localStorage，但是此 localStorage 却不是 available 的。综上，需要两步来检测是否支持：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">storageAvailable</span> (<span class="params">type</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> storage = <span class="built_in">window</span>[type]</span><br><span class="line">    <span class="keyword">var</span> str = <span class="string">'__storage_test__'</span></span><br><span class="line">    storage.setItem(str, str)</span><br><span class="line">    storage.removeItem(str)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来可以使用了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (storageAvailable(<span class="string">'localStorage'</span>)) &#123;</span><br><span class="line">  <span class="comment">// use localStorage here</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// some warning or error msg here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>以下均已 window.localStorage 为例：</p>
+<ol>
+<li><p>获取数据</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = localStorage.getItem(<span class="string">'data'</span>) <span class="comment">// getItem 可以从 storage 中获取数据项，接受数据项的key作为参数，返回数据值value</span></span><br><span class="line"><span class="keyword">var</span> data = localStorage[<span class="string">'data'</span>]</span><br><span class="line"><span class="keyword">var</span> data = localStorage.data <span class="comment">// 注意data是字符串</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储数据</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'data'</span>, data) <span class="comment">// setItem 可以用来创建新的数据项或者更新已存在的值。接受要创建/修改的数据项的 key 和对应的 value</span></span><br><span class="line">localStorage[<span class="string">'data'</span>] = data</span><br><span class="line">localStorage.data = data</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除记录</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localStorage.removeItem(<span class="string">'data'</span>) <span class="comment">// 根据传入的 key 移除数据项</span></span><br><span class="line">localStorage.clear() <span class="comment">// 不接收参数，直接清空整个存储对象</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="storage-事件"><a href="#storage-事件" class="headerlink" title="storage 事件"></a>storage 事件</h2><p>修改 web storage 中的值时会触发 window 对象的 storage 事件。需要注意的是，重复设置相同的键值不会触发该事件，在同一个页面内发生的变化不会触发该事件，在相同域名下的其他页面中修改时才会触发。</p>
 <p>注：对于 sessionStorage, 只有相互牵连的窗口改动sessionStorage的时候才会触发</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>对于 localStorage, 如果浏览器两个标签页都打开了来自同源的页面，其中一个页面修改了 localStorage, 另外一个页面将收到 storage 事件。</p>
 <p>事件对象有如下属性：</p>
-<pre><code>event.key: 在 web storage 中被修改的数据键值。
-event.oldValue: 在 web storage 中被修改前的值。
-event.newValue: 在 web storage 中被修改后的值。
-event.url: 修改 web storage 中值的页面的 url 地址。
-event.storageArea: 被变动的 sessionStorage 对象 或 localStorage 对象。
-</code></pre>
+<pre><code>event.key // 在 web storage 中被修改的数据键值。
+event.oldValue // 在 web storage 中被修改前的值。
+event.newValue // 在 web storage 中被修改后的值。
+event.url // 修改 web storage 中值的页面的 url 地址。
+event.storageArea // 被变动的 sessionStorage 对象 或 localStorage 对象。
+</code></pre><p>一个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'storage'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'.my-key'</span>).textContent = e.key</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'.my-old'</span>).textContent = e.oldValue</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'.my-new'</span>).textContent = e.newValue</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'.my-url'</span>).textContent = e.url</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'.my-storage'</span>).textContent = e.storageArea</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="使用场景及安全性考虑"><a href="#使用场景及安全性考虑" class="headerlink" title="使用场景及安全性考虑"></a>使用场景及安全性考虑</h2><p>一些需要长时间保存的 webapp 的本地缓存可以使用 localStorage 进行保存。有些内容较多的表单填写为了优化用户体验会将单页面拆分成多个子页面，引导用户一步一步去填写，这个时候可以使用 sessionStorage 存储中间内容。 </p>
+<p>由于在浏览器开发者模式下可以对 sessionStorage 和 localStorage 随意读取和修改，所以尽量不要存储敏感信息，对已存储的内容进行提交时进行安全校验。</p>
+
           
         
       
@@ -553,104 +573,6 @@ event.storageArea: 被变动的 sessionStorage 对象 或 localStorage 对象。
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/09/test-myblog/" itemprop="url">
-                  test-myblog
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-09T19:10:52+08:00" content="2016-06-09">
-              2016-06-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><ul>
-<li>aaa</li>
-<li>bbbb</li>
-<li>ccc</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a = <span class="keyword">array</span>();</span><br><span class="line">$b = $a;</span><br><span class="line">var_dump($b);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -692,7 +614,7 @@ event.storageArea: 被变动的 sessionStorage 对象 或 localStorage 对象。
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
